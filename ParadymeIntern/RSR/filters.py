@@ -26,6 +26,7 @@ class PersonFilter(django_filters.FilterSet):
     Skills = django_filters.ModelMultipleChoiceFilter(name='persontoskills__SkillsID',
                                               queryset=Skills.objects.all().order_by('Name').distinct(),
                                               widget=autocomplete.ModelSelect2Multiple(url='RSR:Skills-autocomplete'))
+    # Multi select: change ModelChoiceFilter into ModelMultipleChoiceFilter, and then th widget from ModelSelect2 to ModelSelect2Multiple for the filters you ant for multi select.
     YearOfExperienceForSkill = django_filters.ModelChoiceFilter(name='persontoskills__YearsOfExperience',
                                                                 queryset=PersonToSkills.objects.values_list('YearsOfExperience',flat=True).
                                                                 distinct().order_by('YearsOfExperience'),to_field_name='YearsOfExperience')
